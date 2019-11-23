@@ -24,9 +24,10 @@ public class UserDetailServiceImpl implements UserDetailsService  {
 
         // hard coding the users. All passwords must be encoded.
         final List<AppUser> users = Arrays.asList(
-                new AppUser(1, "omar", encoder.encode("12345"), "USER"),
-                new AppUser(2, "admin", encoder.encode("12345"), "ADMIN")
-        );
+                new AppUser(1, "username1", encoder.encode("password1"), "ADMIN"),
+                new AppUser(2, "username2", encoder.encode("password2"), "ADMIN")
+
+                );
 
 
         for(AppUser appUser: users) {
@@ -50,8 +51,7 @@ public class UserDetailServiceImpl implements UserDetailsService  {
     // A (temporary) class represent the user saved in the database.
     private static class AppUser {
         private Integer id;
-        private String username, password;
-        private String role;
+        private String username, password,role;
 
         public AppUser(Integer id, String username, String password, String role) {
             this.id = id;
