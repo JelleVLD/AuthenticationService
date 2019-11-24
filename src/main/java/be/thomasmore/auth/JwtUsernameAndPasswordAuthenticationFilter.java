@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import be.thomasmore.auth.model.UserCredentials;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -93,29 +94,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         // Add token to header
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
-                response.getWriter().write("{\"token\":\"" + token + "\"," +
+                    response.getWriter().write("{\"token\":\"" + token + "\"," +
                 "\"id\":\"" + id + "\"," +
                 "\"username\":\"" + auth.getName() + "\"}");
     }
 
-    // A (temporary) class just to represent the user credentials
-    private static class UserCredentials {
-        private String username, password;
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-    }
 }
