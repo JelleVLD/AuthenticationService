@@ -25,13 +25,7 @@ public class UserDetailServiceImpl implements UserDetailsService  {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if(!repository.existsAppUserByUsernameEquals("admin")){
-            final List<AppUser> users = Arrays.asList(
-                    new AppUser(1,"username1", encoder.encode("password1"), "ADMIN"),
-                    new AppUser(2,"username2", encoder.encode("password2"), "USER")
-            );
-            repository.insert(users);
-        }
+
 
         if(repository.existsAppUserByUsernameEquals(username)) {
             AppUser appUser = repository.findByUsernameEquals(username);
